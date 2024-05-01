@@ -44,7 +44,7 @@ class Product(models.Model):
         help_text="Введите категорию",
         blank=True,
         null=True,
-        related_name='catalog',
+        related_name="catalog",
     )
     cost_product = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
