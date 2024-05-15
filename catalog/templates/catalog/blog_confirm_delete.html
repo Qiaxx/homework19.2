@@ -1,0 +1,13 @@
+{% extends 'catalog/home.html'%}
+{% block content %}
+<body>
+    <h1>Хотите удалить пост?</h1>
+    <form class='row' method="post">
+        {% csrf_token %}
+        <button type="submit">
+            Удалить
+        </button>
+        <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:post_list'%}" role="button">Отмена</a>
+    </form>
+</body>
+{% endblock %}
