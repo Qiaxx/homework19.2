@@ -12,14 +12,14 @@
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>{{ blog.content | truncatechars:100 }}</li>
                     </ul>
-                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:post_detail' blog.pk %}" role="button">Подробнее</a>
-                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:post_update' blog.pk %}" role="button">Редактировать</a>
-                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:post_delete' blog.pk %}" role="button">Удалить</a>
+                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blogs:post_detail' blog.pk %}" role="button">Подробнее</a>
+                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blogs:post_update' blog.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blogs:post_delete' blog.pk %}" role="button">Удалить</a>
                 </div>
             </div>
         </div>
     {% endif %}
         {% endfor %}
-    <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:post_create'%}">Создать новый пост</a>
+    <a class="p-2 btn btn-outline-primary" href="{% url 'blogs:post_create'%}">Создать новый пост</a>
     </div>
 {% endblock %}

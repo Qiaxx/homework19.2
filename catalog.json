@@ -104,11 +104,76 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2024-05-11T18:55:41.481Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "Honor 10",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2024-05-11T18:56:59.978Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "fffffffffff",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2024-05-15T13:24:59.453Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Ïנטגועסעגוםםûי",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2024-05-15T13:39:38.729Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Ïנטגועסעגוםםûי",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2024-05-15T14:23:41.359Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "עוסע 1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u043e\\u043b\\u0438\\u0447\\u0435\\u0441\\u0442\\u0432\\u043e \\u043f\\u0440\\u043e\\u0441\\u043c\\u043e\\u0442\\u0440\\u043e\\u0432\"]}}]"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$720000$razJuijTcK84uxXkfrOrIx$EubwBysFk1WZkUOq931pZKR+Gei08EJxltCGEmc5et0=",
-    "last_login": "2024-05-01T14:18:13.276Z",
+    "last_login": "2024-05-15T14:22:14.714Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -119,6 +184,14 @@
     "date_joined": "2024-05-01T14:10:40.614Z",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "061ljo7cn0sevjksr5h1owgvfmi9tcz7",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGlmO8ZeSnjNYu941DiBHipMKcXcSKQVUI817M2-RYF1qWjvPaSRxEYM4_XYI-cltB_SAdp9kntoyjyh3RR60y9tE_Loe7t9BhV63dTBgFUGGbHXJrGOgiIZNQKO0dy4GX85FoY8BLQOZgZzTxWxpPbogPl_yXTfq:1s7FWI:LDhAoGzeITbt9KSH1Y54HorwRCobQMQQgmBEjjPXIyE",
+    "expire_date": "2024-05-29T14:22:14.765Z"
   }
 },
 {
@@ -162,8 +235,8 @@
     "image_product": "",
     "category": 4,
     "cost_product": 15000,
-    "created_at": "2024-05-09T18:13:52.293Z",
-    "updated_at": "2024-05-09T18:13:52.293Z"
+    "created_at": "2024-05-09T18:22:31.983Z",
+    "updated_at": "2024-05-09T18:22:31.983Z"
   }
 },
 {
@@ -175,8 +248,8 @@
     "image_product": "",
     "category": 4,
     "cost_product": 130000,
-    "created_at": "2024-05-09T18:13:52.295Z",
-    "updated_at": "2024-05-09T18:13:52.295Z"
+    "created_at": "2024-05-09T18:22:31.985Z",
+    "updated_at": "2024-05-09T18:22:31.985Z"
   }
 },
 {
@@ -188,8 +261,8 @@
     "image_product": "",
     "category": 6,
     "cost_product": 95000,
-    "created_at": "2024-05-09T18:13:52.297Z",
-    "updated_at": "2024-05-09T18:13:52.297Z"
+    "created_at": "2024-05-09T18:22:31.987Z",
+    "updated_at": "2024-05-09T18:22:31.987Z"
   }
 },
 {
@@ -201,8 +274,34 @@
     "image_product": "",
     "category": 4,
     "cost_product": 83000,
-    "created_at": "2024-05-09T18:13:52.299Z",
-    "updated_at": "2024-05-09T18:13:52.299Z"
+    "created_at": "2024-05-09T18:22:31.989Z",
+    "updated_at": "2024-05-09T18:22:31.989Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 10,
+  "fields": {
+    "name": "Honor 10",
+    "description": "Îעכטקםûי עוכופמם מממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממ",
+    "image_product": "catalog/media/297_middle.jpg",
+    "category": 4,
+    "cost_product": 10000,
+    "created_at": "2024-05-11T18:55:41.449Z",
+    "updated_at": "2024-05-11T18:55:41.449Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 11,
+  "fields": {
+    "name": "fffffffffff",
+    "description": "ממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממממ",
+    "image_product": "",
+    "category": 4,
+    "cost_product": 10000,
+    "created_at": "2024-05-11T18:56:59.976Z",
+    "updated_at": "2024-05-11T18:56:59.976Z"
   }
 }
 ]
