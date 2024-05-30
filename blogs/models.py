@@ -13,7 +13,7 @@ class Blog(models.Model):
         verbose_name="Изображение",
         help_text="Вставьте изображение",
         blank=True,
-        null=True
+        null=True,
     )
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     published = models.BooleanField(default=False, verbose_name="Опубликовано")
@@ -22,7 +22,7 @@ class Blog(models.Model):
         verbose_name="Количество просмотров",
         help_text="Введите количество просмотров",
         blank=True,
-        null=True
+        null=True,
     )
 
     class Meta:
@@ -33,5 +33,4 @@ class Blog(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:post_detail', kwargs={'slug': self.slug})
-
+        return reverse("blog:post_detail", kwargs={"slug": self.slug})
