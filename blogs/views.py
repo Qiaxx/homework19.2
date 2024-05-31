@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     ListView,
-    TemplateView,
     DetailView,
     CreateView,
     UpdateView,

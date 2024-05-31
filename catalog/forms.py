@@ -16,6 +16,15 @@ FORBIDDEN_WORDS = [
 ]
 
 
+def clean(cleaned_data):
+    for word in FORBIDDEN_WORDS:
+        if word in cleaned_data.lower():
+            raise forms.ValidationError(
+                f"Название не может содержать слово: {word}"
+            )
+    return cleaned_data
+
+
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,21 +42,11 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     def clean_name(self):
         cleaned_data = self.cleaned_data.get("name")
-        for word in FORBIDDEN_WORDS:
-            if word in cleaned_data.lower():
-                raise forms.ValidationError(
-                    f"Название не может содержать слово: {word}"
-                )
-        return cleaned_data
+        clean(cleaned_data)
 
     def clean_description(self):
         cleaned_data = self.cleaned_data.get("description")
-        for word in FORBIDDEN_WORDS:
-            if word in cleaned_data.lower():
-                raise forms.ValidationError(
-                    f"Описание не может содержать слово: {word}"
-                )
-        return cleaned_data
+        clean(cleaned_data)
 
 
 class VersionForm(StyleFormMixin, forms.ModelForm):

@@ -6,11 +6,9 @@
     {{ form.as_p }}
 
     <h3>Версии</h3>
-    {{ versions.management_form }}
-    {% for formset in versions %}
-      <div class="formset">
-        {{ formset.as_p }}
-      </div>
+    {{ formset.management_form }}
+    {% for form in formset.forms %}
+    {{ form.as_p }}
     {% endfor %}
 
     <button type="submit" class="btn btn-primary">Сохранить</button>
