@@ -75,7 +75,7 @@ class Version(models.Model):
         verbose_name="Название версии",
         help_text="Введите название версии",
     )
-    is_current = models.BooleanField(default=False)
+    is_current = models.BooleanField(default=False, verbose_name="Активная версия")
 
     class Meta:
         verbose_name = "Версия товара"
