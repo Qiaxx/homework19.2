@@ -1,0 +1,8 @@
+.forgot-password-link {
+    text-decoration: none;
+    color: black;
+}
+
+.forgot-password-link:hover {
+    color: blue;
+}

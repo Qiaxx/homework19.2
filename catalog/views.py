@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -26,7 +27,7 @@ class ContactsView(TemplateView):
         return render(request, self.template_name)
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, LoginRequiredMixin):
     model = Product
     context_object_name = "products"
 
@@ -47,11 +48,11 @@ class ProductListView(ListView):
         return context
 
 
-class ProductDetailsView(DetailView):
+class ProductDetailsView(DetailView, LoginRequiredMixin):
     model = Product
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(CreateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:product_list")
@@ -59,10 +60,12 @@ class ProductCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         VersionFromset = inlineformset_factory(Product, Version, VersionForm, extra=1)
-        if self.request.method == 'POST':
-            context_data['formset'] = VersionFromset(self.request.POST, instance=self.object)
+        if self.request.method == "POST":
+            context_data["formset"] = VersionFromset(
+                self.request.POST, instance=self.object
+            )
         else:
-            context_data['formset'] = VersionFromset(instance=self.object)
+            context_data["formset"] = VersionFromset(instance=self.object)
         return context_data
 
     def form_valid(self, form):
@@ -77,9 +80,14 @@ class ProductCreateView(CreateView):
             return super().render_to_response(
                 self.get_context_data(form=form, formset=formset)
             )
+        product = form.save()
+        user = self.request.user
+        product.user = user
+        product.save()
+        return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UpdateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:product_details")
@@ -90,10 +98,12 @@ class ProductUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         VersionFromset = inlineformset_factory(Product, Version, VersionForm, extra=1)
-        if self.request.method == 'POST':
-            context_data['formset'] = VersionFromset(self.request.POST, instance=self.object)
+        if self.request.method == "POST":
+            context_data["formset"] = VersionFromset(
+                self.request.POST, instance=self.object
+            )
         else:
-            context_data['formset'] = VersionFromset(instance=self.object)
+            context_data["formset"] = VersionFromset(instance=self.object)
         return context_data
 
     def form_valid(self, form):

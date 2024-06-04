@@ -19,9 +19,7 @@ FORBIDDEN_WORDS = [
 def clean(cleaned_data):
     for word in FORBIDDEN_WORDS:
         if word in cleaned_data.lower():
-            raise forms.ValidationError(
-                f"Название не может содержать слово: {word}"
-            )
+            raise forms.ValidationError(f"Название не может содержать слово: {word}")
     return cleaned_data
 
 
