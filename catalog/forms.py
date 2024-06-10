@@ -47,6 +47,20 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
         clean(cleaned_data)
 
 
+class ProductModeratorForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ("description", "category", "is_published")
+
+    def clean_name(self):
+        cleaned_data = self.cleaned_data.get("name")
+        clean(cleaned_data)
+
+    def clean_description(self):
+        cleaned_data = self.cleaned_data.get("description")
+        clean(cleaned_data)
+
+
 class VersionForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Version
