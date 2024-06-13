@@ -111,9 +111,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user == self.object.user:
             return ProductForm
-        if user.has_perm("product.can_cancel_publish_product") and user.has_perm("product.can_change_description_product") and user.has_perm("product.can_change_category_product"):
+        elif user.has_perm("product.can_cancel_publish_product") and user.has_perm("product.can_change_description_product") and user.has_perm("product.can_change_category_product"):
             return ProductModeratorForm
-        raise PermissionDenied
+        else:
+            raise PermissionDenied
 
     def form_valid(self, form):
         context_data = super().get_context_data()
