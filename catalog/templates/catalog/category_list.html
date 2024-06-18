@@ -1,0 +1,8 @@
+{% extends "catalog/home.html" %}
+{% block content %}
+<div class="row text-center">
+    {% for category in object_list %}
+    <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:products_by_category' category.id %}">{{ category.name }}</a>
+    {% endfor %}
+</div>
+{% endblock %}

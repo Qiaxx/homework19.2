@@ -10,6 +10,6 @@ def media_filter(path):
     return "#"
 
 
-@register.filter(name='is_moderator')
+@register.filter(name="is_moderator")
 def is_moderator(user):
-    return user.groups.filter(name='moderator').exists()
+    return user.groups.filter(name="moderator").exists()

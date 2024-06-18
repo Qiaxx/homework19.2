@@ -44,25 +44,29 @@ def email_verification(request, token):
 
 
 class ChangePasswordView(FormView):
-    template_name = 'users/change_password.html'
+    template_name = "users/change_password.html"
     form_class = PasswordResetRequestForm
-    success_url = reverse_lazy("users:login")  # URL куда перенаправить после успешного восстановления пароля
+    success_url = reverse_lazy(
+        "users:login"
+    )  # URL куда перенаправить после успешного восстановления пароля
 
     def form_valid(self, form):
-        email = form.cleaned_data['email']
+        email = form.cleaned_data["email"]
         try:
             user = User.objects.get(email=email)
-            new_password = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
+            new_password = "".join(
+                random.choices(string.ascii_letters + string.digits, k=12)
+            )
             user.password = make_password(new_password)
             user.save()
             send_mail(
-                subject='Ваш новый пароль',
-                message=f'Ваш новый пароль: {new_password}',
+                subject="Ваш новый пароль",
+                message=f"Ваш новый пароль: {new_password}",
                 from_email=EMAIL_HOST_USER,  # Замените на ваш email
-                recipient_list=[user.email]
+                recipient_list=[user.email],
             )
         except User.DoesNotExist:
-            form.add_error('email', 'Пользователь с таким email не найден')
+            form.add_error("email", "Пользователь с таким email не найден")
             return self.form_invalid(form)
 
         return super().form_valid(form)

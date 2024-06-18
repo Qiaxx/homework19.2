@@ -5,28 +5,34 @@ from catalog.models import Product
 
 
 class Command(BaseCommand):
-    help = 'Создание группы Модераторы с необходимыми правами'
+    help = "РЎРѕР·РґР°РЅРёРµ РіСЂСѓРїРїС‹ РњРѕРґРµСЂР°С‚РѕСЂС‹ СЃ РЅРµРѕР±С…РѕРґРёРјС‹РјРё РїСЂР°РІР°РјРё"
 
     def handle(self, *args, **kwargs):
-        # Создаем группу Модераторы
-        moderators_group, created = Group.objects.get_or_create(name='moderator')
+        # РЎРѕР·РґР°РµРј РіСЂСѓРїРїСѓ РњРѕРґРµСЂР°С‚РѕСЂС‹
+        moderators_group, created = Group.objects.get_or_create(name="moderator")
 
-        # Получаем права
+        # РџРѕР»СѓС‡Р°РµРј РїСЂР°РІР°
         content_type = ContentType.objects.get_for_model(Product)
         cancel_publish_product = Permission.objects.get(
-            codename='cancel_publish_product',
+            codename="cancel_publish_product",
             content_type=content_type,
         )
         change_product_description_permission = Permission.objects.get(
-            codename='change_product_description',
+            codename="change_product_description",
             content_type=content_type,
         )
         change_category_product_permission = Permission.objects.get(
-            codename='change_category_product',
+            codename="change_category_product",
             content_type=content_type,
         )
 
-        # Назначаем права группе
-        moderators_group.permissions.add(cancel_publish_product, change_product_description_permission, change_category_product_permission)
+        # РќР°Р·РЅР°С‡Р°РµРј РїСЂР°РІР° РіСЂСѓРїРїРµ
+        moderators_group.permissions.add(
+            cancel_publish_product,
+            change_product_description_permission,
+            change_category_product_permission,
+        )
 
-        self.stdout.write(self.style.SUCCESS('Группа Модераторы создана и права назначены.'))
+        self.stdout.write(
+            self.style.SUCCESS("Р“СЂСѓРїРїР° РњРѕРґРµСЂР°С‚РѕСЂС‹ СЃРѕР·РґР°РЅР° Рё РїСЂР°РІР° РЅР°Р·РЅР°С‡РµРЅС‹.")
+        )

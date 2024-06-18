@@ -12,7 +12,8 @@ from django.views.generic import (
 )
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.services import get_cached_categories
 
 
 class ContactsView(TemplateView):
@@ -35,6 +36,7 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         products = context["products"]
+        context["categories"] = Category.objects.all()
 
         for product in products:
             current_version = product.versions.filter(is_current=True).first()
@@ -111,7 +113,11 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user == self.object.user:
             return ProductForm
-        elif user.has_perm("product.can_cancel_publish_product") and user.has_perm("product.can_change_description_product") and user.has_perm("product.can_change_category_product"):
+        elif (
+            user.has_perm("product.can_cancel_publish_product")
+            and user.has_perm("product.can_change_description_product")
+            and user.has_perm("product.can_change_category_product")
+        ):
             return ProductModeratorForm
         else:
             raise PermissionDenied
@@ -128,3 +134,33 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return super().render_to_response(
                 self.get_context_data(form=form, formset=formset)
             )
+
+
+class ProductByCategoryView(ListView):
+    model = Product
+    template_name = "catalog/products_by_category.html"
+    context_object_name = "products_by_category"
+
+    def get_queryset(self):
+        category_id = self.kwargs.get("category_id")
+        return Product.objects.filter(category_id=category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = Category.objects.get(id=self.kwargs.get("category_id"))
+        context["categories"] = Category.objects.all()
+        return context
+
+
+class CategoryListView(ListView):
+    model = Category
+    context_object_name = "categories"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+
+        return context
+
+    def get_queryset(self):
+        return get_cached_categories()

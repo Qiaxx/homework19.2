@@ -2,6 +2,18 @@
     <h5 class="my-0 mr-md-auto font-weight-normal">Электролит</h5>
     <nav class="ms-5">
         <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
+        <div class="btn-group">
+          <button type="button" class="p-2 btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Категории
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'catalog:category_list' %}">Все категории</a></li>
+            <li><hr class="dropdown-divider"></li>
+            {% for category in categories %}
+            <li><a class="dropdown-item" href="{% url 'catalog:products_by_category' category.id %}">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
         <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
         {% if not user.is_authenticated %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
