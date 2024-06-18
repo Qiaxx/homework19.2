@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 
 from catalog.apps import CatalogConfig
 from catalog.views import (
@@ -25,9 +25,15 @@ urlpatterns = [
         cache_page(60)(ProductDetailsView.as_view()),
         name="product_details",
     ),
-    path("product/create/", ProductCreateView.as_view(), name="product_create"),
     path(
-        "product/update/<int:pk>/", ProductUpdateView.as_view(), name="product_update"
+        "product/create/",
+        never_cache(ProductCreateView.as_view()),
+        name="product_create",
+    ),
+    path(
+        "product/update/<int:pk>/",
+        never_cache(ProductUpdateView.as_view()),
+        name="product_update",
     ),
     path(
         "products/category/<int:category_id>",
